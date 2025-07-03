@@ -33,4 +33,9 @@ można wypełnić bazę przykładowymi danymi za pomocą:
 php artisan db:seed
 ```
 
+## Endpoint dla dodawania oceny:
 
+
+```
+/api/goal-evaluation
+```
