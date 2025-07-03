@@ -24,9 +24,9 @@ class GoalEvaluationService
                 );
             });
         } catch (ModelNotFoundException $e) {
-            throw new \InvalidArgumentException('Pracownik lub cel nie został znaleziony.');
+            throw new \InvalidArgumentException('Employee or goal not found.');
         } catch (Exception $e) {
-            throw new \RuntimeException('Wystąpił błąd podczas zapisywania oceny.');
+            throw new \RuntimeException('An error occurred while saving the evaluation.');
         }
     }
 }
