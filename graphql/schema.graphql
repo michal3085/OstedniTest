@@ -1,0 +1,34 @@
+scalar DateTime
+
+type Employee {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+type Goal {
+  id: ID!
+  title: String!
+}
+
+type GoalEvaluation {
+  id: ID!
+  progress: Int!
+  updatedAt: DateTime
+  assignment: EmployeeGoalAssignment!
+  employee: Employee!
+}
+
+type EmployeeGoalAssignment {
+    employee: Employee!
+    goal: Goal!
+}
+
+type Mutation {
+  submitGoalEvaluation(employee_id: ID!, goal_id: ID!, progress: Int!): GoalEvaluation
+    @field(resolver: "App\\GraphQL\\Mutations\\GoalEvaluationMutator@submit")
+}
+
+type Query {
+  _empty: String
+}

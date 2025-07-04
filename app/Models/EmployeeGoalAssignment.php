@@ -24,4 +24,9 @@ class EmployeeGoalAssignment extends Model
     {
         return $this->belongsTo(Goal::class);
     }
+
+    public function evaluation()
+    {
+        return $this->hasOne(GoalEvaluation::class, 'assignment_id');
+    }
 }

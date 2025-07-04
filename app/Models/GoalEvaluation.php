@@ -2,21 +2,38 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class GoalEvaluation extends Model
 {
-    use HasFactory;
+    protected $fillable = ['assignment_id', 'progress'];
 
-    protected $fillable = [
-        'assignment_id',
-        'progress',
-    ];
-
-    public function assignment(): BelongsTo
+    public function assignment()
     {
         return $this->belongsTo(EmployeeGoalAssignment::class, 'assignment_id');
+    }
+
+    public function employee()
+    {
+        return $this->hasOneThrough(
+            Employee::class,
+            EmployeeGoalAssignment::class,
+            'id',
+            'id',
+            'assignment_id',
+            'employee_id',
+        );
+    }
+
+    public function goal()
+    {
+        return $this->hasOneThrough(
+            Goal::class,
+            EmployeeGoalAssignment::class,
+            'id',
+            'id',
+            'assignment_id',
+            'goal_id',
+        );
     }
 }

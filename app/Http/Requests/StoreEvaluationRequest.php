@@ -14,6 +14,11 @@ class StoreEvaluationRequest extends FormRequest
         return true;
     }
 
+    public function validationData(): array
+    {
+        return $this->input('variables') ?? $this->all();
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
